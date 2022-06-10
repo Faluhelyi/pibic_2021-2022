@@ -263,7 +263,8 @@ for i in range(1941):
 data1 = sales_train_eva
 data1['sales_filter'] = np.array(['none']*len(sales_train_eva))
 
-b = np.concatenate((np.array(data1.groupby(['sales_filter'])[a].sum()),
+b = np.concatenate(
+    (np.array(data1.groupby(['sales_filter'])[a].sum()),
 np.array([np.nan]*28)), axis = None)[0:1941]
 
 dict_1_eva['all'] = pd.Series(b, index = calendar['date'][0:1941])
