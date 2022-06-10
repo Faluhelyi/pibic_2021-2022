@@ -403,7 +403,8 @@ for state in states:
     
     for departament in departaments:
         
-        b = np.concatenate((np.array(sales_train_val[(sales_train_val['state_id'] == state) &
+        b = np.concatenate((np.array(
+            sales_train_val[(sales_train_val['state_id'] == state) &
         (sales_train_val['dept_id'] == departament)].groupby(
             ['state_id', 'dept_id'])[a].sum()), np.array([np.nan]*28)), axis = None)[0:1913]
         
@@ -426,7 +427,8 @@ for state in states:
     
     for category in categories:
         
-        b = np.concatenate((np.array(sales_train_val[(sales_train_val['state_id'] == state) &
+        b = np.concatenate((np.array(
+            sales_train_val[(sales_train_val['state_id'] == state) &
         (sales_train_val['cat_id'] == category)].groupby(['state_id', 'cat_id'])[a].sum()),
         np.array([np.nan]*28)), axis = None)[0:1913]
         
