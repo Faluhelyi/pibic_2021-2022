@@ -39,7 +39,8 @@ for state in states:
     for product in products:
         
         b = np.concatenate((np.array(
-            sales_train_eva[(sales_train_eva['item_id'] == product) &
+            sales_train_eva[(
+                sales_train_eva['item_id'] == product) &
         (sales_train_eva['state_id'] == state)].groupby(['item_id', 'state_id'])[a].sum()),
         np.array([np.nan]*28)), axis = None)[0:1941]
         
@@ -286,7 +287,8 @@ for store in stores:
     
     for product in products:
         
-        b = np.concatenate((np.array(sales_train_val[(sales_train_val['item_id'] == product) &
+        b = np.concatenate((np.array(
+            sales_train_val[(sales_train_val['item_id'] == product) &
         (sales_train_val['store_id'] == store)].groupby(['store_id', 'item_id']).sum()),
         np.array([np.nan]*28)), axis = None)[0:1913]
         
@@ -307,7 +309,8 @@ for state in states:
     
     for product in products:
         
-        b = np.concatenate((np.array(sales_train_val[(sales_train_val['item_id'] == product) &
+        b = np.concatenate((np.array(
+            sales_train_val[(sales_train_val['item_id'] == product) &
         (sales_train_val['state_id'] == state)].groupby(['item_id', 'state_id'])[a].sum()),
         np.array([np.nan]*28)), axis = None)[0:1913]
         
@@ -327,7 +330,8 @@ for i in range(1913):
     
 for product in products:
     
-    b = np.concatenate((np.array(sales_train_val[(sales_train_val['item_id'] == product)].groupby(
+    b = np.concatenate((np.array(
+        sales_train_val[(sales_train_val['item_id'] == product)].groupby(
         ['item_id'])[a].sum()),
     np.array([np.nan]*28)),
     axis = None)[0:1913]
@@ -351,7 +355,8 @@ for store in stores:
     
     for departament in departaments:
         
-        b = np.concatenate((np.array(sales_train_val[(sales_train_val['dept_id'] == departament) &
+        b = np.concatenate((np.array(
+            sales_train_val[(sales_train_val['dept_id'] == departament) &
         (sales_train_val['store_id'] == store)].groupby(['store_id', 'dept_id'])[a].sum()),
         np.array([np.nan]*28)), axis = None)[0:1913]
         
@@ -374,7 +379,8 @@ for store in stores:
     
     for category in categories:
         
-        b = np.concatenate((np.array(sales_train_val[(sales_train_val['cat_id'] == category) &
+        b = np.concatenate((np.array(
+            sales_train_val[(sales_train_val['cat_id'] == category) &
         (sales_train_val['store_id'] == store)].groupby(
             ['store_id', 'cat_id'])[a].sum()), np.array([np.nan]*28)), axis = None)[0:1913]
         
@@ -440,7 +446,8 @@ for i in range(1913):
 
 for departament in departaments:
     
-    b = np.concatenate((np.array(sales_train_val[(sales_train_val['dept_id'] == departament)].groupby(['dept_id'])[a].sum()),
+    b = np.concatenate((np.array(sales_train_val[(
+        sales_train_val['dept_id'] == departament)].groupby(['dept_id'])[a].sum()),
     np.array([np.nan]*28)), axis = None)[0:1913]
     
     dict_5_val[str(departament)] = pd.Series(b, index = calendar['date'][0:1913])
@@ -459,7 +466,8 @@ for i in range(1913):
 
 for category in categories:
     
-    b = np.concatenate((np.array(sales_train_val[(sales_train_val['cat_id'] == category)].groupby(
+    b = np.concatenate((np.array(
+        sales_train_val[(sales_train_val['cat_id'] == category)].groupby(
         ['cat_id'])[a].sum()),
     np.array([np.nan]*28)), axis = None)[0:1913]
     
@@ -479,7 +487,8 @@ for i in range(1913):
 
 for store in stores:
     
-    b = np.concatenate((np.array(sales_train_val[(sales_train_eva['store_id'] == store)].groupby(
+    b = np.concatenate((np.array(
+        sales_train_val[(sales_train_eva['store_id'] == store)].groupby(
         ['store_id'])[a].sum()),
     np.array([np.nan]*28)), axis = None)[0:1913]
     
@@ -500,7 +509,8 @@ for i in range(1913):
 for state in states:
     
     b = np.concatenate(
-        (np.array(sales_train_val[(sales_train_val['state_id'] == state)].groupby(
+        (np.array(sales_train_val[
+            (sales_train_val['state_id'] == state)].groupby(
         ['state_id'])[a].sum()), np.array([np.nan]*28)),
     axis = None)[0:1913]
     
@@ -518,7 +528,8 @@ for i in range(1913):
 data1 = sales_train_val
 data1['sales_filter'] = np.array(['none']*len(sales_train_val))
 
-b = np.concatenate((np.array(data1.groupby(['sales_filter'])[a].sum()),
+b = np.concatenate((np.array(data1.groupby(
+    ['sales_filter'])[a].sum()),
 np.array([np.nan]*28)), axis = None)[0:1913]
 
 dict_1_val['all'] = pd.Series(b, index = calendar['date'][0:1913])
