@@ -1,9 +1,9 @@
 #############################################################
-######## CONSTRUÇÃO DOS DICIONÁRIOS PARA EVALUATION #########
+######## CONSTRUCAO DOS DICIONARIOS PARA eVALUATION #########
 #############################################################
 
-### Dicionário 12 - Sales of product x, aggregated for each store
-dict_12_eva = {} # número de vendas diárias do produto x, agregado por cada loja (dia 1 até dia 1941) 
+### DicionArio 12 - Sales of product x, aggregated for each store
+dict_12_eva = {} # número de vendas diArias do produto x, agregado por cada loja (dia 1 ate dia 1941) 
 
 stores = list(np.unique(sales_train_eva['store_id'].values))
 products = list(np.unique(sales_train_eva['item_id'].values))
@@ -22,8 +22,8 @@ for store in stores:
         dict_12_eva[str(product)+'_'+ str(store)] = pd.Series(b, index = calendar['date'][0:1941])
 
 
-### Dicionário 11 - Sales of product x, aggregated for each State
-dict_11_eva = {} # número de vendas diárias do produto x, agregado por cada Estado (dia 1 até dia 1941)
+### DicionArio 11 - Sales of product x, aggregated for each State
+dict_11_eva = {} # número de vendas diArias do produto x, agregado por cada estado (dia 1 ate dia 1941)
 
 states = list(np.unique(sales_train_eva['state_id'].values))
 products = list(np.unique(sales_train_eva['item_id'].values))
@@ -42,8 +42,8 @@ for state in states:
         dict_11_eva[str(product)+'_'+ str(state)] = pd.Series(b, index = calendar['date'][0:1941])
              
 
-### Dicionário 10 - Sales of product x, aggregated for all stores/states
-dict_10_eva = {} # número de vendas diárias do produto x, agregado para todas as lojas e Estados (dia 1 até dia 1941)
+### DicionArio 10 - Sales of product x, aggregated for all stores/states
+dict_10_eva = {} # número de vendas diArias do produto x, agregado para todas as lojas e estados (dia 1 ate dia 1941)
 
 products = list(np.unique(sales_train_eva['item_id'].values))
 
@@ -62,8 +62,8 @@ for product in products:
     
 
 
-### Dicionário 9 - Sales of all products, aggregated for each store and department
-dict_9_eva = {} # número de vendas diárias de todos produtos, agregado por cada loja e departamento (dia 1 até dia 1941)
+### DicionArio 9 - Sales of all products, aggregated for each store and department
+dict_9_eva = {} # número de vendas diArias de todos produtos, agregado por cada loja e departamento (dia 1 ate dia 1941)
 
 departaments = list(np.unique(sales_train_eva['dept_id'].values))
 stores = list(np.unique(sales_train_eva['store_id'].values))
@@ -84,8 +84,8 @@ for store in stores:
 
 
 
-### Dicionário 8 - sales of all products, aggregated for each store and category
-dict_8_eva = {} # número de vendas diárias de todos produtos, agregado por cada loja e categoria (dia 1 até dia 1941)
+### DicionArio 8 - sales of all products, aggregated for each store and category
+dict_8_eva = {} # número de vendas diArias de todos produtos, agregado por cada loja e categoria (dia 1 ate dia 1941)
 
 categories = list(np.unique(sales_train_eva['cat_id'].values))
 stores = list(np.unique(sales_train_eva['store_id'].values))
@@ -106,8 +106,8 @@ for store in stores:
         
         
 
-### Dicionário 7 - sales of all products, aggregated for each State and department
-dict_7_eva = {} # número de vendas diárias de todos produtos, agregado por cada Estado e departamento (dia 1 até dia 1941)
+### DicionArio 7 - sales of all products, aggregated for each State and department
+dict_7_eva = {} # número de vendas diArias de todos produtos, agregado por cada estado e departamento (dia 1 ate dia 1941)
 
 states = list(np.unique(sales_train_eva['state_id'].values))
 departaments = list(np.unique(sales_train_eva['dept_id'].values))
@@ -129,8 +129,8 @@ for state in states:
         
         
 
-### Dicionário 6 - sales of all products, aggregated for each State and category
-dict_6_eva = {} # número de vendas diárias de todos produtos, agregado por cada Estado e categoria (dia 1 até dia 1941)
+### DicionArio 6 - sales of all products, aggregated for each State and category
+dict_6_eva = {} # número de vendas diArias de todos produtos, agregado por cada estado e categoria (dia 1 ate dia 1941)
 
 states = list(np.unique(sales_train_eva['state_id'].values))
 categories = list(np.unique(sales_train_eva['cat_id'].values))
@@ -152,8 +152,8 @@ for state in states:
         
         
 
-### Dicionário 5 - sales of all products, aggregated for each department
-dict_5_eva = {} # número de vendas diárias de todos produtos, agregado por cada departamneto (dia 1 até dia 1941)
+### DicionArio 5 - sales of all products, aggregated for each department
+dict_5_eva = {} # número de vendas diArias de todos produtos, agregado por cada departamneto (dia 1 ate dia 1941)
 
 departaments = list(np.unique(sales_train_eva['dept_id'].values))
 
@@ -171,8 +171,8 @@ for departament in departaments:
         
         
 
-### Dicionário 4 - sales of all products, aggregated for each category
-dict_4_eva = {} # número de vendas diárias de todos produtos, agregado por categoria (dia 1 até dia 1941)
+### DicionArio 4 - sales of all products, aggregated for each category
+dict_4_eva = {} # número de vendas diArias de todos produtos, agregado por categoria (dia 1 ate dia 1941)
 
 categories = list(np.unique(sales_train_eva['cat_id'].values))
 
@@ -190,8 +190,8 @@ for category in categories:
         
         
 
-### Dicionário 3 - sales of all products, aggregated for each store
-dict_3_eva = {} # número de vendas diárias de todos produtos, agregado por cada loja (dia 1 até dia 1941)
+### DicionArio 3 - sales of all products, aggregated for each store
+dict_3_eva = {} # número de vendas diArias de todos produtos, agregado por cada loja (dia 1 ate dia 1941)
 
 stores = list(np.unique(sales_train_eva['store_id'].values))
 
@@ -209,8 +209,8 @@ for store in stores:
         
         
 
-### Dicionário 2 - sales of all products, aggregated for each State
-dict_2_eva = {} # número de vendas diárias de todos produtos, agregado por cada Estado (dia 1 até dia 1941)
+### DicionArio 2 - sales of all products, aggregated for each State
+dict_2_eva = {} # número de vendas diArias de todos produtos, agregado por cada estado (dia 1 ate dia 1941)
 
 states = list(np.unique(sales_train_eva['state_id'].values))
 
@@ -227,8 +227,8 @@ for state in states:
     dict_2_eva[str(state)] = pd.Series(b, index = calendar['date'][0:1941])
         
         
-### Dicionário 1 - sales of all products, aggregated for all stores/states
-dict_1_eva = {} # número de vendas diárias de todos produtos sem hierarquia (dia 1 até dia 1941)
+### DicionArio 1 - sales of all products, aggregated for all stores/states
+dict_1_eva = {} # número de vendas diArias de todos produtos sem hierarquia (dia 1 ate dia 1941)
 
 
 a = []
@@ -244,11 +244,11 @@ dict_1_eva['all'] = pd.Series(b, index = calendar['date'][0:1941])
 
 
 #############################################################
-######## CONSTRUÇÃO DOS DICIONÁRIOS PARA VALIDATION #########
+######## CONSTRUcAO DOS DICIONARIOS PARA VALIDATION #########
 #############################################################
 
-### Dicionário 12 - Sales of product x, aggregated for each store
-dict_12_val = {} # número de vendas diárias do produto x, agregado por cada loja (dia 1 até dia 1913) 
+### DicionArio 12 - Sales of product x, aggregated for each store
+dict_12_val = {} # número de vendas diArias do produto x, agregado por cada loja (dia 1 ate dia 1913) 
 
 stores = list(np.unique(sales_train_val['store_id'].values))
 products = list(np.unique(sales_train_val['item_id'].values))
@@ -267,8 +267,8 @@ for store in stores:
         dict_12_val[str(product)+'_'+ str(store)] = pd.Series(b, index = calendar['date'][0:1913])
 
 
-### Dicionário 11 - Sales of product x, aggregated for each State
-dict_11_val = {} # número de vendas diárias do produto x, agregado por cada Estado (dia 1 até dia 1913)
+### DicionArio 11 - Sales of product x, aggregated for each State
+dict_11_val = {} # número de vendas diArias do produto x, agregado por cada estado (dia 1 ate dia 1913)
 
 states = list(np.unique(sales_train_val['state_id'].values))
 products = list(np.unique(sales_train_val['item_id'].values))
@@ -287,8 +287,8 @@ for state in states:
         dict_11_val[str(product)+'_'+ str(state)] = pd.Series(b, index = calendar['date'][0:1913])
              
 
-### Dicionário 10 - Sales of product x, aggregated for all stores/states
-dict_10_val = {} # número de vendas diárias do produto x, agregado para todas as lojas e Estados (dia 1 até dia 1913)
+### DicionArio 10 - Sales of product x, aggregated for all stores/states
+dict_10_val = {} # número de vendas diArias do produto x, agregado para todas as lojas e estados (dia 1 ate dia 1913)
 
 products = list(np.unique(sales_train_val['item_id'].values))
 
@@ -307,8 +307,8 @@ for product in products:
     
 
 
-### Dicionário 9 - Sales of all products, aggregated for each store and department
-dict_9_val = {} # número de vendas diárias de todos produtos, agregado por cada loja e departamento (dia 1 até dia 1913)
+### DicionArio 9 - Sales of all products, aggregated for each store and department
+dict_9_val = {} # número de vendas diArias de todos produtos, agregado por cada loja e departamento (dia 1 ate dia 1913)
 
 departaments = list(np.unique(sales_train_val['dept_id'].values))
 stores = list(np.unique(sales_train_val['store_id'].values))
@@ -329,8 +329,8 @@ for store in stores:
 
 
 
-### Dicionário 8 - sales of all products, aggregated for each store and category
-dict_8_val = {} # número de vendas diárias de todos produtos, agregado por cada loja e categoria (dia 1 até dia 1913)
+### DicionArio 8 - sales of all products, aggregated for each store and category
+dict_8_val = {} # número de vendas diArias de todos produtos, agregado por cada loja e categoria (dia 1 ate dia 1913)
 
 categories = list(np.unique(sales_train_val['cat_id'].values))
 stores = list(np.unique(sales_train_val['store_id'].values))
@@ -351,8 +351,8 @@ for store in stores:
         
         
 
-### Dicionário 7 - sales of all products, aggregated for each State and department
-dict_7_val = {} # número de vendas diárias de todos produtos, agregado por cada Estado e departamento (dia 1 até dia 1913)
+### DicionArio 7 - sales of all products, aggregated for each State and department
+dict_7_val = {} # número de vendas diArias de todos produtos, agregado por cada estado e departamento (dia 1 ate dia 1913)
 
 states = list(np.unique(sales_train_val['state_id'].values))
 departaments = list(np.unique(sales_train_val['dept_id'].values))
@@ -373,8 +373,8 @@ for state in states:
         
         
 
-### Dicionário 6 - sales of all products, aggregated for each State and category
-dict_6_val = {} # número de vendas diárias de todos produtos, agregado por cada Estado e categoria (dia 1 até dia 1913)
+### DicionArio 6 - sales of all products, aggregated for each State and category
+dict_6_val = {} # número de vendas diArias de todos produtos, agregado por cada estado e categoria (dia 1 ate dia 1913)
 
 states = list(np.unique(sales_train_val['state_id'].values))
 categories = list(np.unique(sales_train_val['cat_id'].values))
@@ -395,8 +395,8 @@ for state in states:
         
         
 
-### Dicionário 5 - sales of all products, aggregated for each department
-dict_5_val = {} # número de vendas diárias de todos produtos, agregado por cada departamneto (dia 1 até dia 1913)
+### DicionArio 5 - sales of all products, aggregated for each department
+dict_5_val = {} # número de vendas diArias de todos produtos, agregado por cada departamneto (dia 1 ate dia 1913)
 
 departaments = list(np.unique(sales_train_val['dept_id'].values))
 
@@ -414,8 +414,8 @@ for departament in departaments:
         
         
 
-### Dicionário 4 - sales of all products, aggregated for each category
-dict_4_val = {} # número de vendas diárias de todos produtos, agregado por categoria (dia 1 até dia 1913)
+### DicionArio 4 - sales of all products, aggregated for each category
+dict_4_val = {} # número de vendas diArias de todos produtos, agregado por categoria (dia 1 ate dia 1913)
 
 categories = list(np.unique(sales_train_val['cat_id'].values))
 
@@ -433,8 +433,8 @@ for category in categories:
         
         
 
-### Dicionário 3 - sales of all products, aggregated for each store
-dict_3_val = {} # número de vendas diárias de todos produtos, agregado por cada loja (dia 1 até dia 1913)
+### DicionArio 3 - sales of all products, aggregated for each store
+dict_3_val = {} # número de vendas diArias de todos produtos, agregado por cada loja (dia 1 ate dia 1913)
 
 stores = list(np.unique(sales_train_val['store_id'].values))
 
@@ -452,8 +452,8 @@ for store in stores:
         
         
 
-### Dicionário 2 - sales of all products, aggregated for each State
-dict_2_val = {} # número de vendas diárias de todos produtos, agregado por cada Estado (dia 1 até dia 1913)
+### DicionArio 2 - sales of all products, aggregated for each State
+dict_2_val = {} # número de vendas diArias de todos produtos, agregado por cada estado (dia 1 ate dia 1913)
 
 states = list(np.unique(sales_train_val['state_id'].values))
 
@@ -470,8 +470,8 @@ for state in states:
     dict_2_val[str(state)] = pd.Series(b, index = calendar['date'][0:1913])
         
         
-### Dicionário 1 - sales of all products, aggregated for all stores/states
-dict_1_val = {} # número de vendas diárias de todos produtos sem hierarquia (dia 1 até dia 1913)
+### DicionArio 1 - sales of all products, aggregated for all stores/states
+dict_1_val = {} # número de vendas diArias de todos produtos sem hierarquia (dia 1 ate dia 1913)
 
 
 a = []
