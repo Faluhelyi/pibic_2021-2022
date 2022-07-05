@@ -54,9 +54,9 @@ for store in stores:
         dict_9_val[str(store)+'_'+str(departament)] = pd.Series(b, index = calendar['date'][0:1913])
 
 
-#######################################################################
-######## CONSTRUCAO DA FUNCAO ATTACH_DATAS(.) PARA VALIDATION #########
-#######################################################################
+###############################################################
+######## CONSTRUCAO DA FUNCAO ATTACH_DATAS(.) PARA VALIDATION #
+###############################################################
 
 def attach_datas_val(filtro, store_id, dept_id):
     '''Função que retorna um data frame com as informações de calendar.csv, sell_prices.csv e
@@ -92,9 +92,9 @@ def attach_datas_val(filtro, store_id, dept_id):
 
 
 
-#######################################################################
-######## CONSTRUCAO DA FUNCAO ATTACH_DATAS(.) PARA EVALUATION #########
-#######################################################################
+###############################################################
+######## CONSTRUCAO DA FUNCAO ATTACH_DATAS(.) PARA EVALUATION #
+###############################################################
 
 def attach_datas_eva(filtro, store_id, dept_id):
     '''Função que retorna um data frame com as informações de calendar.csv, sell_prices.csv e
