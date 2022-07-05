@@ -5,6 +5,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import statsmodels.api as sm
+
+import warnings
 
 # lendo os dados
 INPUT_DIR = 'C:/Users/Igor/Desktop/PIBIC 2021 e 2022/Dados'
