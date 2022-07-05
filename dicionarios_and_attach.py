@@ -18,7 +18,8 @@ for store in stores:
     for departament in departaments:
         
         b = np.concatenate((np.array(sales_train_eva[(sales_train_eva['dept_id'] == departament) &
-        (sales_train_eva['store_id'] == store)].groupby(['store_id', 'dept_id'])[a].sum()), np.array([np.nan]*28)),
+        (sales_train_eva['store_id'] == store)]
+        .groupby(['store_id', 'dept_id'])[a].sum()),np.array([np.nan]*28)),
         axis = None)[0:1941]
         
         dict_9_eva[str(store)+'_'+str(departament)]=pd.Series(b, index = pd.to_datetime(calendar['date'][0:1941])).asfreq('D')
@@ -46,7 +47,8 @@ for store in stores:
     for departament in departaments:
         
         b = np.concatenate((np.array(sales_train_val[(sales_train_val['dept_id'] == departament) &
-        (sales_train_val['store_id'] == store)].groupby(['store_id', 'dept_id'])[a].sum()), np.array([np.nan]*28)),
+        (sales_train_val['store_id'] == store)]
+        .groupby(['store_id', 'dept_id'])[a].sum()),np.array([np.nan]*28)),
         axis = None)[0:1913]
         
         dict_9_val[str(store)+'_'+str(departament)]=pd.Series(b, index = pd.to_datetime(calendar['date'][0:1913])).asfreq('D')
