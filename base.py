@@ -1,5 +1,5 @@
 #########################################################
-###### TEMPO PARA RODAR O CÓDIGO: 15min #################
+###### TEMPO PARA RODAR O CÓDIGO: por volta de 15min ####
 #########################################################
 
 ############################################
@@ -12,6 +12,7 @@ import numpy as np
 import statsmodels.api as sm
 
 import warnings
+
 
 ############################################
 ########## IMPORTACAO DOS DADOS ############
@@ -27,15 +28,6 @@ sales_train_eva = pd.read_csv(f'{INPUT_DIR}/sales_train_evaluation.csv') #sales_
 
 # NOTE: o banco sales_train_eva contempla o sales_train_val e ainda adciona observacoes das vendas dos dias d_1914 - d_1941
 
-############################################
-#### ANALISE EXPLORATORIA DOS DADOS ########
-############################################
-
-print(calendar.head(3))
-print(selling_prices.head(3))
-print(sample_submission.head(3))
-print(sales_train_val.head(3))
-print(sales_train_eva.head(3))
 
 ############################################
 #### Construção dos dicionários (filtros) ##
@@ -239,10 +231,3 @@ def attach_datas_eva(filtro, store_id, dept_id):
 
     
     return pd.get_dummies(m, dummy_na= True, columns=['event_name_1', 'event_type_1', 'event_name_2', 'event_type_2'])
-
-
-############################################
-########## AJUSTE DOS MODELOS ##############
-############################################
-
-
