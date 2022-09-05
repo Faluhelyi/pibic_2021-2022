@@ -75,6 +75,25 @@ for store in stores:
         dict_9_eva[str(store)+'_'+str(departament)] = pd.Series(b, index = pd.to_datetime(calendar['date'][0:1941])).asfreq('D')
 
 
+
+### Dicionário 3 - sales of all products, aggregated for each store
+dict_3_eva = {} # número de vendas diárias de todos produtos, agregado por cada loja (dia 1 até dia 1941)
+
+stores = list(np.unique(sales_train_eva['store_id'].values))
+
+a = []
+for i in range(1941):
+    a.append('d_' +str(i+1))
+    
+
+for store in stores:
+    
+    b = np.concatenate((np.array(sales_train_eva[(sales_train_eva['store_id'] == store)].groupby(['store_id'])[a].sum()), np.array([np.nan]*28)),
+    axis = None)[0:1941]
+    
+    dict_3_eva[str(store)] = pd.Series(b, index = calendar['date'][0:1941])
+
+
 ### Dicionário 1 - sales of all products, aggregated for all stores/states
 dict_1_eva = {} # número de vendas diárias de todos produtos sem hierarquia (dia 1 até dia 1941)
 
