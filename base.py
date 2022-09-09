@@ -250,3 +250,54 @@ def attach_datas_eva(filtro, store_id, dept_id):
 
     
     return pd.get_dummies(m, dummy_na= True, columns=['event_name_1', 'event_type_1', 'event_name_2', 'event_type_2'])
+
+
+
+##################################################
+### Construção da função para calcular o sMAPE ###
+##################################################
+##################################################
+
+def calculate_smape(actual, predicted) -> float:
+  
+    # Convert actual and predicted to numpy
+    # array data type if not already
+    if not all([isinstance(actual, np.ndarray), 
+                isinstance(predicted, np.ndarray)]):
+        actual, predicted = np.array(actual),
+        np.array(predicted)
+  
+    return round(
+        np.mean(
+            np.abs(predicted - actual) / 
+            ((np.abs(predicted) + np.abs(actual))/2)
+        )*100, 2
+    )
+
+
+
+
+##################################################
+### Construção da função para calcular o MASE  ###
+##################################################
+##################################################
+
+def MASE(training_series, testing_series, prediction_series):
+    """
+    Computes the MEAN-ABSOLUTE SCALED ERROR forcast error for univariate time series prediction.
+    
+    See "Another look at measures of forecast accuracy", Rob J Hyndman
+    
+    parameters:
+        training_series: the series used to train the model, 1d numpy array
+        testing_series: the test series to predict, 1d numpy array or float
+        prediction_series: the prediction of testing_series, 1d numpy array (same size as testing_series) or float
+        absolute: "squares" to use sum of squares and root the result, "absolute" to use absolute values.
+    
+    """
+    print("Needs to be tested.")
+    n = training_series.shape[0]
+    d = np.abs(  np.diff( training_series) ).sum()/(n-1)
+    
+    errors = np.abs(testing_series - prediction_series )
+    return errors.mean()/d

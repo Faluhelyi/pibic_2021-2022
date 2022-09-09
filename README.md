@@ -14,10 +14,17 @@ Neste arquivo está descrito como foi contruido o mecanismo para acessar cada um
 Esse mecanismo é constituido de dicionários, que funcionam como filtros.
 
 Além dos dicionários (filtros para acessar as séries), no arquivo base.py também é descrito como foi desenvolvida a função
-que agrega as informações e integra os 3 bancos de dados da competição M5.
+que agrega as informações e integra os 3 bancos de dados da competição M5 e as funções para o cálculo do sMAPE e MASE.
 
 
 # Arquivo rascunho.py
 
 Neste arquivo segue o código python que em essência pode ser descartado, mas foi parte dentro da minha linha de racicínio ao longo
 da elaboração do Arquivo main.ipynb
+
+
+# **Modelos Ajustados**
+
+Pasta com os ajustes já feitos. Para replicar meus resultados, basta rodar os códigos - que vão puxar os respectivos ajustes.
+
+Caso você queria ajustar novamente, saliento que os ajustes demoram horas (muitas)!
