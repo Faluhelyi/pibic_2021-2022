@@ -23,8 +23,3 @@ Neste arquivo segue o código python que em essência pode ser descartado, mas f
 da elaboração do Arquivo main.ipynb
 
 
-# **Modelos Ajustados**
-
-Pasta com os ajustes já feitos. Para replicar meus resultados, basta rodar os códigos - que vão puxar os respectivos ajustes.
-
-Caso você queria ajustar novamente, saliento que os ajustes demoram horas (muitas)!
