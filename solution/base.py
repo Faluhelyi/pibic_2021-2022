@@ -18,7 +18,7 @@ import warnings
 ########## IMPORTACAO DOS DADOS ############
 ############################################
 
-INPUT_DIR = 'C:/Users/Igor/Desktop/PIBIC 2021 e 2022/Dados'
+INPUT_DIR = 'C:/Users/Igor/Desktop/PIBIC_2021-2022/data_from_kaggle'
 
 calendar = pd.read_csv(f'{INPUT_DIR}/calendar.csv')
 selling_prices = pd.read_csv(f'{INPUT_DIR}/sell_prices.csv')
@@ -26,7 +26,7 @@ sample_submission = pd.read_csv(f'{INPUT_DIR}/sample_submission.csv')
 sales_train_val = pd.read_csv(f'{INPUT_DIR}/sales_train_validation.csv') #sales_train d_1 ate d_1913
 sales_train_eva = pd.read_csv(f'{INPUT_DIR}/sales_train_evaluation.csv') #sales_train d_1 ate d_1941
 
-# NOTE: o banco sales_train_eva contempla o sales_train_val e ainda adciona observacoes das vendas dos dias d_1914 - d_1941
+#sales_train_eva contempla o sales_train_val e ainda adciona observacoes das vendas dos dias d_1914 - d_1941
 
 
 ############################################
@@ -49,10 +49,13 @@ for store in stores:
     
     for product in products:
         
-        b = np.concatenate((np.array(sales_train_eva[(sales_train_eva['item_id'] == product) &
-        (sales_train_eva['store_id'] == store)].groupby(['store_id', 'item_id']).sum()), np.array([np.nan]*28)), axis = None)[0:1941]
+        b = np.concatenate((np.array(sales_train_eva[(sales_train_eva['item_id'] == product) &\
+                                                     (sales_train_eva['store_id'] == store)]\
+                                                        .groupby(['store_id', 'item_id']).sum()),\
+                                                            np.array([np.nan]*28)),axis = None)[0:1941]
         
-        dict_12_eva[str(product)+'_'+ str(store)+'_evaluation'] = pd.Series(b, index = pd.to_datetime(calendar['date'][0:1941])).asfreq('D')
+        dict_12_eva[str(product)+'_'+ str(store)+'_evaluation'] = pd.Series(b,index = pd.to_datetime(\
+            calendar['date'][0:1941])).asfreq('D')
 
 ### Dicionário 9 - Sales of all products, aggregated for each store and department
 dict_9_eva = {} # número de vendas diárias de todos produtos, agregado por cada loja e departamento (dia 1 até dia 1941)
@@ -70,9 +73,11 @@ for store in stores:
     for departament in departaments:
         
         b = np.concatenate((np.array(sales_train_eva[(sales_train_eva['dept_id'] == departament) &
-        (sales_train_eva['store_id'] == store)].groupby(['store_id', 'dept_id'])[a].sum()), np.array([np.nan]*28)), axis = None)[0:1941]
+        (sales_train_eva['store_id'] == store)].groupby(['store_id', 'dept_id'])\
+            [a].sum()), np.array([np.nan]*28)), axis = None)[0:1941]
         
-        dict_9_eva[str(store)+'_'+str(departament)] = pd.Series(b, index = pd.to_datetime(calendar['date'][0:1941])).asfreq('D')
+        dict_9_eva[str(store)+'_'+str(departament)] = pd.Series(b, index = pd.to_datetime(calendar['date'][0:1941]))\
+            .asfreq('D')
 
 
 
