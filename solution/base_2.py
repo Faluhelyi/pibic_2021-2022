@@ -117,12 +117,15 @@ def get_price_total():
     retorna a variação percentual média dos preços dos item_id vendidos pela walmart
 
     '''
-    v = selling_prices.copy()
-    v['pct_change_sell_price'] = v['sell_price'].pct_change()
-    v.fillna(0, inplace = True)
+    v = selling_prices.copy().groupby('wm_yr_wk')['sell_price'].mean()
+    data = pd.DataFrame({'wm_yr_wk':v.index, 'sell_price_weekly':v.values})
+    data['pct_change_sell_price_weekly'] = data['sell_price_weekly'].pct_change()
+    data.fillna(0, inplace = True)
 
-    data = pd.merge(v, calendar[['wm_yr_wk', 'date', 'd']], on = 'wm_yr_wk', how = 'inner')[['date', 'd', 'pct_change_sell_price']]
-    return pd.Series(data = data['pct_change_sell_price'].values, index = data['date']).resample('D').mean()
+    data = pd.merge(data, calendar[['wm_yr_wk', 'date', 'd']], on = 'wm_yr_wk', how = 'inner')\
+        [['date', 'd', 'pct_change_sell_price_weekly']]
+    
+    return pd.Series(data = data['pct_change_sell_price_weekly'].values, index = data['date']).resample('W').max()
 
 def get_exp_var():
     exp_var = calendar[['date', 'd', 'weekday', 'event_type_1', 'event_type_2', 'snap_CA', 'snap_TX', 'snap_WI']].copy()
