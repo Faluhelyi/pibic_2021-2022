@@ -20,8 +20,8 @@ sns.set_style("whitegrid")
 ############################
 #data
   
-x = np.array(base.no_filter().values)
-y = np.array(base.get_price_total()[0:-28].values)
+x = np.array(base.no_filter().resample('W').sum())/1000
+y = np.array(base.get_price_total()[0:-4])*100
 
 # Define colors based on positive or negative change in sell price
 colors = ['orange' if val > 0 else 'blue' for val in y]
@@ -34,8 +34,8 @@ ax.scatter(x, y, c=colors, alpha=0.5)
 
 # Add title and labels
 plt.title('Scatter plot for Walmart Sales and % Change in Sell Price')
-plt.ylabel('% Change in Sell Price')
-plt.xlabel('Walmart Daily Sales')
+plt.ylabel('Average of Weekly % Change in Sell Price (%)')
+plt.xlabel('Walmart Weekly Total Sales (Thousands)')
 
 # Add trendline
 z = np.polyfit(x, y, 1)
