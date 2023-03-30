@@ -16,3 +16,5 @@ import warnings
 print(len(base.get_price_total()[0:-4]))
 
 print(len(base.no_filter().resample('W').sum()))
+
+
