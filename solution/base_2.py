@@ -155,13 +155,10 @@ def calculate_smape(actual, forecast) -> float:
                 isinstance(forecast, np.ndarray)]):
          actual, forecast  = np.array(actual), np.array(forecast)
   
-    return round(
+    return round(\
         np.mean(\
-        np.abs(forecast - actual) / ((np.abs(forecast) + np.abs(actual))/2))*100\
-            , 2)
-
-
-
+        np.abs(forecast - actual) / ((np.abs(forecast) + np.abs(actual))/2))*100, \
+            2)
 
 ##################################################
 ### Construção da função para calcular o MASE  ###
