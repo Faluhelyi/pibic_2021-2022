@@ -109,7 +109,8 @@ def get_price(dept_id, store_id):
     v['pct_change_sell_price'] = v['sell_price'].pct_change()
     v.fillna(0, inplace = True)
 
-    data = pd.merge(v, calendar[['wm_yr_wk', 'date', 'd']], on = 'wm_yr_wk', how = 'inner')[['date', 'd', 'pct_change_sell_price']]
+    data = pd.merge(v, calendar[['wm_yr_wk', 'date', 'd']], on = 'wm_yr_wk', how = 'inner')\
+        [['date', 'd', 'pct_change_sell_price']]
     return pd.Series(data = data['pct_change_sell_price'].values, index = data['date']).resample('D').mean()
 
 def get_price_total():
@@ -138,7 +139,7 @@ def get_exp_var():
         a = f"{i}"
         exp_var[a] = dummies[a]
 
-    exp_var = exp_var.drop(['event_type_1', 'event_type_2', 'event_type_1_No_event', 'event_type_2_No_event', 'weekday',\
+    exp_var = exp_var.drop(['d', 'event_type_1', 'event_type_2', 'event_type_1_No_event', 'event_type_2_No_event', 'weekday',\
                             'weekday_Wednesday'], axis = 1)
     
     return exp_var
