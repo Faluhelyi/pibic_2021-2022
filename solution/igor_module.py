@@ -66,7 +66,28 @@ def main():
     import time
     time.sleep(3)
     print("This was not meant to be called directly!")
+
+#############################################################################
+### Transform an amount of seconds to amount of time in D:HH:MM:SS format ###
+#############################################################################
+def amount_time(seconds):
+    SECONDS_PER_DAY = (60*60*24)
+    SECONDS_PER_HOUR = (60*60)
+    SECONDS_PER_MINUTE = (60)
+
+    days = seconds//SECONDS_PER_DAY
+    seconds = seconds%SECONDS_PER_DAY
+
+    hours = seconds//SECONDS_PER_HOUR
+    seconds = seconds%SECONDS_PER_HOUR
+
+    minutes = seconds//SECONDS_PER_MINUTE
+    seconds = seconds%SECONDS_PER_MINUTE
+
+    return "The equivalent duration is", \
+        "%d:%02d:%02d:%02d" % (days, hours, minutes, seconds), \
+            "in D:HH:MM:SS format."
     
 if __name__ == "__main__":
-    main()
+    print(amount_time(432000)) # 5! hours is 5 days
     
