@@ -139,9 +139,9 @@ def get_exp_var():
         a = f"{i}"
         exp_var[a] = dummies[a]
 
-    exp_var = exp_var.drop(['d', 'event_type_1', 'event_type_2', 'event_type_1_No_event', 'event_type_2_No_event', 'weekday',\
+    exp_var = exp_var.drop(['date', 'd', 'event_type_1', 'event_type_2', 'event_type_1_No_event', 'event_type_2_No_event', 'weekday',\
                             'weekday_Wednesday'], axis = 1)
-    
+    exp_var.replace({False: 0, True: 1}, inplace=True)
     return exp_var
 
 
