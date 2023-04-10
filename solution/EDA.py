@@ -155,3 +155,26 @@ plt.grid(True)
 
 # save figure
 plt.savefig(f"{base.INPUT_DIR}/images/box_plot_event.png", dpi=300, bbox_inches='tight')
+
+###############
+## final fig ##
+###############
+SARIMAX_submission = pd.read_csv(f'{base.INPUT_DIR}/submission_files/SARIMAX_submission.csv')
+TBATS_submission = pd.read_csv(f'{base.INPUT_DIR}/submission_files/TBATS_submission.csv')
+
+SARIMAX = SARIMAX_submission[SARIMAX_submission['id'].str.contains("validation")].iloc[:, 1:].sum().values
+TBATS = TBATS_submission[TBATS_submission['id'].str.contains("validation")].iloc[:, 1:].sum().values
+
+result_final = pd.DataFrame({'Actual':base.no_filter()[-28:], 'SARIMAX Forecasts':SARIMAX, 'TBATS Forecasts':TBATS})
+
+result_final.plot()
+plt.savefig(f'{base.INPUT_DIR}/images/final_fig.pdf', format="pdf", bbox_inches="tight", dpi = 200)
+
+##############
+## Acurácia ##
+##############
+print('MASE SARIMAX:', np.round(base.MASE(base.no_filter()[0:-28], base.no_filter()[-28:], SARIMAX), 3))
+print('MASE TBATS:', np.round(base.MASE(base.no_filter()[0:-28], base.no_filter()[-28:], TBATS), 3))
+
+print('sMAPE SARIMAX:', round(base.calculate_smape(base.no_filter()[-28:], SARIMAX)/100, 3))
+print('sMAPE TBATS:', round(base.calculate_smape(base.no_filter()[-28:], TBATS)/100, 3))

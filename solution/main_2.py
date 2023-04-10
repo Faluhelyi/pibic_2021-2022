@@ -1,4 +1,7 @@
-
+##################################################
+# Note: 36h to run without pre trained models    #
+# Especificacoes: intel core i5 7th gen; 8gm RAM # 
+##################################################
 if __name__=="__main__":
     import base_2 as base
     import pandas as pd
@@ -17,6 +20,7 @@ if __name__=="__main__":
     import joblib
     import IPython
     from pathlib import Path
+    from tqdm import tqdm
 
     ############################################################
     ##   Ajuste dos 140 (2*70) modelos SARIMAX, DHR e TBATS  ###
@@ -30,7 +34,7 @@ if __name__=="__main__":
     c = 0
     while c <= 1:
         iter = '_validation' if c ==0 else '_evaluation'
-        for index, id in enumerate(base.sales_train['id']):
+        for index, id in enumerate(tqdm(base.sales_train['id'])):
             id_ = f'{id}{iter}'
             item = base.sales_train.loc[index]['item_id']
             dept = base.sales_train.loc[index][['dept_id', 'store_id']][0]
@@ -57,8 +61,8 @@ if __name__=="__main__":
             ##     Forecasts      ##
             ########################
             if iter == '_validation':
-                if os.path.exists(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_validation'):
-                    result_sarimax_valid = joblib.load(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_validation')
+                if os.path.exists(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_validation.pkl'):
+                    result_sarimax_valid = joblib.load(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_validation.pkl')
                     sarimax_forecast_valid = result_sarimax_valid.predict(28, X= exp_var[1913:1941])
 
                 else:
@@ -69,17 +73,17 @@ if __name__=="__main__":
                                     X = exp_var[0:1913]
                             )
                     sarimax_forecast_valid = result_sarimax_valid.predict(28, X= exp_var[1913:1941])
-                    joblib.dump(result_sarimax_valid, f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_validation')
+                    joblib.dump(result_sarimax_valid, f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_validation.pkl')
 
                 if os.path.exists(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_validation'):
-                    fitted_tbats = joblib.load(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_validation')
+                    fitted_tbats = joblib.load(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_validation.pkl')
                     tbats_forecast_valid = fitted_tbats.forecast(steps = 28)
                 
                 else:
-                    result_tbats = TBATS(seasonal_periods=[365.25, 365.25/12, 7], n_jobs=2)
+                    result_tbats = TBATS(seasonal_periods=[365.25, 365.25/12, 7], n_jobs=1)
                     fitted_tbats = result_tbats.fit(serie_valid)
                     tbats_forecast_valid = fitted_tbats.forecast(steps = 28)
-                    joblib.dump(fitted_tbats, f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_validation')
+                    joblib.dump(fitted_tbats, f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_validation.pkl')
 
                 #################################################################################################
                 ### Top-Down approach - top-down Gross-Sohl method F (Proportions of the historical averages) ###
@@ -96,8 +100,8 @@ if __name__=="__main__":
                 TBATS_submission.iloc[index_, 1:] = np.round(disaggregated_tbats, 0)
 
             elif iter == '_evaluation':
-                if os.path.exists(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_evaluation'):
-                    result_sarimax_eva = joblib.load(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_evaluation')
+                if os.path.exists(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_evaluation.pkl'):
+                    result_sarimax_eva = joblib.load(f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_evaluation.pkl')
                     sarimax_forecast_eva = result_sarimax_eva.predict(28, X= exp_var[1941:])
 
                 else:
@@ -108,17 +112,17 @@ if __name__=="__main__":
                                         X = exp_var[0:1941]
                                 )
                     sarimax_forecast_eva = result_sarimax_eva.predict(28, X= exp_var[1941:])
-                    joblib.dump(result_sarimax_eva, f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_evaluation')
+                    joblib.dump(result_sarimax_eva, f'{base.INPUT_DIR}/SARIMAX_models/{dept}_{store}_evaluation.pkl')
 
-                if os.path.exists(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_evaluation'):
-                    fitted_tbats = joblib.load(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_evaluation')
+                if os.path.exists(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_evaluation.pkl'):
+                    fitted_tbats = joblib.load(f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_evaluation.pkl')
                     tbats_forecast_eva = fitted_tbats.forecast(steps = 28)
                 
                 else:
-                    result_tbats = TBATS(seasonal_periods=[365.25, 365.25/12, 7], n_jobs=2)
+                    result_tbats = TBATS(seasonal_periods=[365.25, 365.25/12, 7], n_jobs=1)
                     fitted_tbats = result_tbats.fit(serie_eva)
                     tbats_forecast_eva = fitted_tbats.forecast(steps = 28)
-                    joblib.dump(fitted_tbats, f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_evaluation')
+                    joblib.dump(fitted_tbats, f'{base.INPUT_DIR}/TBATS_models/{dept}_{store}_evaluation.pkl')
 
                 #################################################################################################
                 ### Top-Down approach - top-down Gross-Sohl method F (Proportions of the historical averages) ###
@@ -136,5 +140,5 @@ if __name__=="__main__":
 
         c = c + 1
         
-    SARIMAX_submission.to_csv(f'{base.INPUT_DIR}/submission_files/SARIMAX_submission.csv')
-    TBATS_submission.to_csv(f'{base.INPUT_DIR}/submission_files/TBATS_submission.csv')
+    SARIMAX_submission.to_csv(f'{base.INPUT_DIR}/submission_files/SARIMAX_submission.csv', index = False)
+    TBATS_submission.to_csv(f'{base.INPUT_DIR}/submission_files/TBATS_submission.csv', index = False)
