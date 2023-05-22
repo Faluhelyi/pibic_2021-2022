@@ -2,7 +2,7 @@
 
 - 2021-2022 (1 year long) UnB PIBIC, 
 - Time Series Analysis;
-- ARIMA models with explanatory variables, Dynamic Harmonic Regression models and TBATS models;
+- ARIMA with explanatory variables, Dynamic Harmonic Regression and TBATS models;
 - EST/UNB advisor: Prof. Dr. José Augusto Fiorucci.
 
 
