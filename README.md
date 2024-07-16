@@ -1,13 +1,10 @@
-# Repository used to document my participation in 2021 Institutional Scientific Initiation Scholarship Program:
+# Institutional Scientific Initiation Scholarship Program 2021-2022
 
-- 2021-2022 (1 year long) UnB PIBIC, 
-- Time Series Analysis;
-- ARIMA with explanatory variables, Dynamic Harmonic Regression and TBATS models;
-- EST/UNB advisor: Prof. Dr. José Augusto Fiorucci.
+This repository documents my participation in the 2021 Institutional Scientific Initiation Scholarship Program at the University of Brasília (UnB) PIBIC. The program lasted for one year and focused on Time Series Analysis. My research involved working with ARIMA models with explanatory variables, Dynamic Harmonic Regression, and TBATS models under the guidance of Prof. Dr. José Augusto Fiorucci from the Department of Statistics (EST/UnB).
 
+## Overview
 
-# Overview:
+This project presents a comprehensive solution for the 2020 MOFC M5 Forecasting competition on Kaggle. We forecasted the daily sales of retail products sold by Walmart in the U.S., using explanatory variables such as price, payment method, and commemorative dates provided by Walmart for the competition. The aim was not only to generate accurate forecasts but also to submit our solution to the M5 Forecasting competition to benchmark our results against those of other participants worldwide.
 
-This following project assigns a complete solution for 2020 MOFC M5 Forecasting competition in kaggle. We provided forecasts about the number of daily sales of retail products, sold by Walmart in the U.S., using explanatory variables as price, payment method and commemorative dates that are provided by Walmart for the competition. More than presenting these forecasts, a solution is proposed as a submission file within the M5 Forecasting competition in order to compare the quality of the best results presented here, with the results of the other M5 participants and competitors around the world.
 
 
